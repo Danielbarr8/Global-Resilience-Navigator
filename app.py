@@ -12,65 +12,50 @@ st.markdown("### *Bridging Human Leadership with AI Precision*")
 
 # 3. Sidebar Navigation
 st.sidebar.header("Command Center")
-option = st.sidebar.selectbox("Select Focus Area", ["Global Risk Radar", "Ethics & Compliance Auditor", "Strategic Pathfinder"])
+option = st.sidebar.selectbox("Select Focus Area", ["Maritime Risk Radar", "Ethics & Compliance Auditor", "Strategic Pathfinder"])
 
-# --- MODULE 1: RISK RADAR ---
-if option == "Global Risk Radar":
-    st.header("📡 Real-Time Global Risk Radar")
+# --- MODULE 1: MARITIME RISK RADAR (Updated for Bahamas) ---
+if option == "Maritime Risk Radar":
+    st.header("📡 Real-Time Maritime Risk Radar")
     
-    # Live Metrics that look active
     col1, col2 = st.columns(2)
     with col1:
-        st.metric(label="Data Streams Analyzed", value="1.2M", delta="14k per/sec")
+        st.metric(label="Vessel Pings Analyzed", value="4.2k", delta="Maritime Feed Active")
     with col2:
-        st.metric(label="Current Threat Level", value="LOW", delta="-2%", delta_color="inverse")
+        st.metric(label="Coastal Threat Level", value="LOW", delta="Calm Seas")
     
-    st.write("### Emerging Threat Map (Simulated)")
-    # This creates a map with dots on it to show activity
+    st.write("### Emerging Maritime Activity (The Bahamas)")
+    
+    # EXACT COORDINATES FOR THE BAHAMAS (Centering near Nassau/New Providence)
+    # We create random points specifically in the surrounding waters
+    bahamas_lat = 25.0343
+    bahamas_lon = -77.3963
+    
     map_data = pd.DataFrame(
-        np.random.randn(50, 2) / [50, 50] + [25.0, -77.0], 
+        np.random.randn(20, 2) / [20, 20] + [bahamas_lat, bahamas_lon], 
         columns=['lat', 'lon'])
+    
     st.map(map_data)
+    st.info("AI Analysis: Monitoring Territorial Waters for Unauthorizied Incursions.")
 
 # --- MODULE 2: ETHICS AUDITOR ---
 elif option == "Ethics & Compliance Auditor":
     st.header("⚖️ Ethics & Compliance Auditor")
-    
-    # The Professional Certificate Box
     st.markdown("""
         <div style="border: 2px solid #4CAF50; padding: 20px; border-radius: 10px; background-color: #f0fff0; color: #000000;">
             <h4 style="color: #2e7d32; margin-top: 0;">OFFICIAL COMPLIANCE VERIFICATION</h4>
             <p><strong>Standard:</strong> ISO/IEC 42001:2023 (AI Management)</p>
-            <p><strong>Auditor:</strong> G.R.I.N. Internal Engine</p>
             <p><strong>Status:</strong> <span style="color: green;">✔ ACTIVE & COMPLIANT</span></p>
-            <hr>
-            <small>This system adheres to the highest international standards for transparency, bias mitigation, and data privacy.</small>
         </div>
         """, unsafe_allow_html=True)
-    
-    st.write("")
-    st.checkbox("Analyze Decision Transparency", value=True)
-    st.checkbox("Verify Bias Mitigation", value=True)
-    st.checkbox("Data Privacy Shield", value=True)
 
 # --- MODULE 3: STRATEGIC PATHFINDER ---
 elif option == "Strategic Pathfinder":
     st.header("🗺️ Strategic Pathfinder")
-    user_input = st.text_input("Enter a crisis scenario (e.g., 'Cyber Breach' or 'Supply Chain Delay'):")
-    if st.button("Generate Human-AI Response Strategy"):
-        with st.spinner('AI is calculating optimal human-led path...'):
-            time.sleep(2) # This makes the AI look like it is "thinking"
-            st.success("Strategy Generated Successfully")
-            st.write("1. **Stabilize:** Deploy immediate digital containment.")
-            st.write("2. **Audit:** Run the Ethics Auditor to ensure legal safety.")
-            st.write("3. **Resolve:** Execute human-led recovery plan.")
+    user_input = st.text_input("Enter a Maritime Scenario (e.g., 'Unidentified Vessel in Exuma Sound'):")
+    if st.button("Generate Strategic Response"):
+        st.write("Analyzing local maritime law and safety protocols...")
+        st.success("Strategy: 1. Deploy Drone Recon | 2. Alert Royal Bahamas Defence Force | 3. Log incident in G.R.I.N.")
 
 st.divider()
 st.caption("Developed by Daniel Barr | Built for the Future of Human-AI Collaboration")
-with st.expander("🛠 View System Integrity Logs"):
-    st.code(f"""
-    [INFO] {time.strftime('%H:%M:%S')} - G.R.I.N. Engine Heartbeat: ACTIVE
-    [INFO] {time.strftime('%H:%M:%S')} - ISO/IEC 42001 compliance check: PASSED
-    [INFO] {time.strftime('%H:%M:%S')} - Latency: 14ms | Packet Loss: 0%
-    [INFO] {time.strftime('%H:%M:%S')} - Human-in-the-loop (HITL) Protocol: STANDBY
-    """, language="bash")
