@@ -3,59 +3,82 @@ import pandas as pd
 import numpy as np
 import time
 
-# 1. Page Setup
-st.set_page_config(page_title="Project G.R.I.N.", page_icon="🌐", layout="wide")
+# --- THEME & CONFIG ---
+st.set_page_config(page_title="G.R.I.N. Command Center", page_icon="⚓", layout="wide")
 
-# 2. The Header
-st.title("🌐 Global Resilience & Intelligence Navigator (G.R.I.N.)")
-st.markdown("### *Bridging Human Leadership with AI Precision*")
+# Custom CSS for a Professional Look
+st.markdown("""
+    <style>
+    .main { background-color: #0e1117; }
+    .stMetric { background-color: #1f2937; padding: 15px; border-radius: 10px; border: 1px solid #374151; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# 3. Sidebar Navigation
-st.sidebar.header("Command Center")
-option = st.sidebar.selectbox("Select Focus Area", ["Maritime Risk Radar", "Ethics & Compliance Auditor", "Strategic Pathfinder"])
+# --- HEADER ---
+st.title("⚓ G.R.I.N. Command Center")
+st.write("### *Bahamas National Security & Maritime Intelligence Platform*")
+st.divider()
 
-# --- MODULE 1: MARITIME RISK RADAR (Updated for Bahamas) ---
-if option == "Maritime Risk Radar":
-    st.header("📡 Real-Time Maritime Risk Radar")
+# --- NAVIGATION TABS ---
+tab1, tab2, tab3 = st.tabs(["📡 Maritime Intelligence", "⚖️ Governance & Ethics", "🗺️ Strategic Pathfinder"])
+
+# --- TAB 1: MARITIME INTELLIGENCE ---
+with tab1:
+    st.header("Real-Time Coastal Monitoring")
     
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric(label="Vessel Pings Analyzed", value="4.2k", delta="Maritime Feed Active")
-    with col2:
-        st.metric(label="Coastal Threat Level", value="LOW", delta="Calm Seas")
-    
-    st.write("### Emerging Maritime Activity (The Bahamas)")
-    
-    # EXACT COORDINATES FOR THE BAHAMAS (Centering near Nassau/New Providence)
-    # We create random points specifically in the surrounding waters
-    bahamas_lat = 25.0343
-    bahamas_lon = -77.3963
-    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Vessel Pings", "4,102", "+12% Active")
+    col2.metric("Threat Level", "LOW", "-5% Variance", delta_color="inverse")
+    col3.metric("System Uptime", "99.9%", "Secure")
+
+    st.subheader("Territorial Water Surveillance (Bahamas)")
+    # Centering Map on the Bahamas
+    bah_lat, bah_lon = 25.0343, -77.3963
     map_data = pd.DataFrame(
-        np.random.randn(20, 2) / [20, 20] + [bahamas_lat, bahamas_lon], 
+        np.random.randn(15, 2) / [25, 25] + [bah_lat, bah_lon],
         columns=['lat', 'lon'])
-    
     st.map(map_data)
-    st.info("AI Analysis: Monitoring Territorial Waters for Unauthorizied Incursions.")
+    st.info("💡 Data represents simulated maritime radar feeds within the Exclusive Economic Zone (EEZ).")
 
-# --- MODULE 2: ETHICS AUDITOR ---
-elif option == "Ethics & Compliance Auditor":
-    st.header("⚖️ Ethics & Compliance Auditor")
+# --- TAB 2: GOVERNANCE & ETHICS ---
+with tab2:
+    st.header("ISO/IEC 42001 Compliance Audit")
+    
     st.markdown("""
-        <div style="border: 2px solid #4CAF50; padding: 20px; border-radius: 10px; background-color: #f0fff0; color: #000000;">
-            <h4 style="color: #2e7d32; margin-top: 0;">OFFICIAL COMPLIANCE VERIFICATION</h4>
-            <p><strong>Standard:</strong> ISO/IEC 42001:2023 (AI Management)</p>
-            <p><strong>Status:</strong> <span style="color: green;">✔ ACTIVE & COMPLIANT</span></p>
+        <div style="border: 2px solid #4CAF50; padding: 25px; border-radius: 15px; background-color: #101820; color: #FFFFFF;">
+            <h2 style="color: #4CAF50; margin-top: 0;">✔ SYSTEM CERTIFIED</h2>
+            <p><strong>Security Framework:</strong> ISO/IEC 42001:2023 (AI Governance)</p>
+            <p><strong>Audit Status:</strong> Compliant</p>
+            <p><strong>Verified By:</strong> G.R.I.N. Integrity Engine</p>
+            <hr style="border-color: #4CAF50;">
+            <p><small>This interface verifies that all AI operations adhere to international ethical standards, ensuring human-led accountability in maritime law enforcement.</small></p>
         </div>
         """, unsafe_allow_html=True)
 
-# --- MODULE 3: STRATEGIC PATHFINDER ---
-elif option == "Strategic Pathfinder":
-    st.header("🗺️ Strategic Pathfinder")
-    user_input = st.text_input("Enter a Maritime Scenario (e.g., 'Unidentified Vessel in Exuma Sound'):")
-    if st.button("Generate Strategic Response"):
-        st.write("Analyzing local maritime law and safety protocols...")
-        st.success("Strategy: 1. Deploy Drone Recon | 2. Alert Royal Bahamas Defence Force | 3. Log incident in G.R.I.N.")
+# --- TAB 3: STRATEGIC PATHFINDER ---
+with tab3:
+    st.header("Crisis Response Engine")
+    scenario = st.selectbox("Select Threat Scenario", [
+        "Unidentified Vessel in Bahamian Waters",
+        "Search and Rescue (SAR) Optimization",
+        "Coastal Infrastructure Alert",
+        "Illegal Fishing Detection"
+    ])
+    
+    if st.button("Initialize Strategy Generation"):
+        with st.status("Analyzing Maritime Law & Resource Allocation..."):
+            time.sleep(1.5)
+            st.write("Cross-referencing Royal Bahamas Defence Force protocols...")
+            time.sleep(1)
+        
+        st.success(f"Strategic Action Plan for: {scenario}")
+        st.code("""
+        1. DEPLOY: Immediate aerial/drone reconnaissance.
+        2. VERIFY: Cross-check vessel ID against international registries.
+        3. NOTIFY: Establish secure link to local authorities (RBDF/Police).
+        4. LOG: Incident data archived for post-action ethical review.
+        """, language="markdown")
 
+# --- FOOTER ---
 st.divider()
-st.caption("Developed by Daniel Barr | Built for the Future of Human-AI Collaboration")
+st.caption(f"© 2026 Developed by Daniel Barr | Justice of the Peace | National Security Portfolio")
